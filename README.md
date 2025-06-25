@@ -29,5 +29,4 @@ Code to create a view of Rx Drug relationships from the OMOP Vocabulary
 3. Edit Runtime Parameter Variables
    1. Save the file "./sas_etl/0-edit-run-main.sas" to "0-run-main.sas"
    2. Edit the file "./sas_etl/0-run-main.sas" to use your local settings
-   3. Edit the file "./sas_etl/rcm_std_vars.sas" to point to local VDW
 4. Run the file "0-run-main.sas" that you have edited to align with your SAS environment
