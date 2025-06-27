@@ -34,7 +34,7 @@ proc sql;
     from vocab.concept cp
     inner join vocab.concept_relationship cr
     on cp.concept_id = cr.concept_id_1
-    inner join dat.rcm_rx_ndc rn
+    inner join dat.rx_ndc rn
     on cr.concept_id_2 = rn.omop_code_id
     where lower(cp.vocabulary_id) = 'rxnorm'
   ;
@@ -43,43 +43,42 @@ quit;
 
 
 proc sql;
-  create table dat.group_rx_rxnorm as
-select cnn.concept_code as rxnorm_code, cnn.concept_name as rxnorm_desc, cdfggg.rxnorm_grp_cd, cdfggg.rxnorm_grp_desc, cdfggg.rxnorm_grp_class_cd, cdfggg.rxnorm_grp_class_desc
+create table dat.group_rx_rxnorm as
+select cnn.concept_code as rxnorm_code, cnn.concept_name as rxnorm_desc, cnn.concept_class_id as rxnorm_omop_class, cdfggg.rxnorm_grp_cd, cdfggg.rxnorm_grp_desc, cdfggg.rxnorm_grp_omop_class, cdfggg.rxnorm_class_cd, cdfggg.rxnorm_class_desc, cdfggg.rxnorm_class_omop_class
 from vocab.concept cnn
 inner join
-(
-select crr.*, cdfgg.*
-from vocab.concept_relationship crr
-inner join
-(
-select cn.concept_id as cdfg_concept_id, cn.concept_code as rxnorm_grp_cd, cn.concept_name as rxnorm_grp_desc, cdfg.rxnorm_grp_class_cd, cdfg.rxnorm_grp_class_desc
-from vocab.concept cn
-inner join
-(
-select cr.*, dfg.*
-from vocab.concept_relationship cr
-inner join
-(
-select concept_id as dfg_concept_id, concept_code as rxnorm_grp_class_cd, concept_name as rxnorm_grp_class_desc 
-from vocab.concept 
-where vocabulary_id = 'RxNorm'
-and concept_class_id = 'Dose Form Group'
-) dfg
-on cr.concept_id_1 = dfg.dfg_concept_id
-where cr.relationship_id = 'Dose form group of'
-) cdfg
-on cn.concept_id = cdfg.concept_id_2
-where cn.concept_class_id = 'Clinical Dose Group'
-and cn.vocabulary_id = 'RxNorm'
-) cdfgg
-on crr.concept_id_1 = cdfgg.cdfg_concept_id
-where crr.relationship_id = 'RxNorm has ing'
+  (
+  select crr.*, cdfgg.*
+  from vocab.concept_relationship crr
+  inner join
+  (
+    select cn.concept_id as cdfg_concept_id, cn.concept_code as rxnorm_grp_cd, cn.concept_name as rxnorm_grp_desc, cn.concept_class_id as rxnorm_grp_omop_class, cdfg.rxnorm_class_cd, cdfg.rxnorm_class_desc, cdfg.rxnorm_class_omop_class
+    from vocab.concept cn
+    inner join
+    (
+      select cr.*, dfg.*
+      from vocab.concept_relationship cr
+      inner join
+      (
+        select concept_id as dfg_concept_id, concept_code as rxnorm_class_cd, concept_name as rxnorm_class_desc, concept_class_id as rxnorm_class_omop_class
+        from vocab.concept 
+        where vocabulary_id = 'RxNorm'
+        and concept_class_id = 'Dose Form Group'
+      ) dfg
+      on cr.concept_id_1 = dfg.dfg_concept_id
+      where cr.relationship_id = 'Dose form group of'
+    ) cdfg
+    on cn.concept_id = cdfg.concept_id_2
+    where cn.vocabulary_id = 'RxNorm'
+  ) cdfgg
+  on crr.concept_id_1 = cdfgg.cdfg_concept_id
 ) cdfggg
 on cnn.concept_id = cdfggg.concept_id_2
-where cnn.concept_class_id = 'Ingredient'
-and cnn.vocabulary_id = 'RxNorm'
-  order by cdfggg.rxnorm_grp_class_cd, cdfggg.rxnorm_grp_cd, cnn.concept_code
-  ;
+where cnn.vocabulary_id = 'RxNorm'
+and cnn.concept_class_id <> 'Branded Dose Group'
+and cnn.concept_class_id <> 'Clinical Dose Group'
+and cnn.concept_class_id <> 'Dose Form Group'
+;
 quit;
 
 
