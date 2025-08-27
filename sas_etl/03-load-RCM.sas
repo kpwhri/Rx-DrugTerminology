@@ -11,8 +11,7 @@
 *********************************************/
 
 
-* map vdw ndc codes to omop ndc codes;
-
+*map vdw ndc codes to omop ndc codes;
 proc sql;
 create table dat.rx_ndc as
 	select cb.code_id as vdw_code_id, cb.code as vdw_code, cb.code_desc as vdw_cd_desc, cb.code_type as vdw_cd_type,
@@ -25,10 +24,10 @@ create table dat.rx_ndc as
 ;
 quit;
 
-*map ndc codes to rxnorm codes;
 
+*map ndc codes to rxnorm codes;
 proc sql;
-  create table dat.xwalk_rx_ndc_rxnorm as
+  create table dat.rx_ndc_rxnorm_xwalk as
     select cp.concept_id as omop_rxnorm_cd_id, cp.concept_code as rxnorm_code, cp.concept_name as rxnorm_cd_desc,
       cr.concept_id_2 as omop_ndc_cd_id, cr.relationship_id as omop_relationship_id, rn.vdw_code as ndc_code, rn.vdw_cd_desc as ndc_cd_desc
     from vocab.concept cp
@@ -41,9 +40,9 @@ proc sql;
 quit;
     
 
-
+*Rx Group Hierarchy for RxNorm Codes;
 proc sql;
-create table dat.group_rx_rxnorm as
+create table dat.rx_rxnorm_grp as
 select cnn.concept_code as rxnorm_code, cnn.concept_name as rxnorm_desc, cnn.concept_class_id as rxnorm_omop_class, cdfggg.rxnorm_grp_cd, cdfggg.rxnorm_grp_desc, cdfggg.rxnorm_grp_omop_class, cdfggg.rxnorm_class_cd, cdfggg.rxnorm_class_desc, cdfggg.rxnorm_class_omop_class
 from vocab.concept cnn
 inner join
@@ -82,10 +81,9 @@ and cnn.concept_class_id <> 'Dose Form Group'
 quit;
 
 
-*map ndfrt hierarchy class to preparation;
-
+*Rx Group Hierarchy for National Drug File - Reference Terminology Therapeutic Classification;
 proc sql;
-  create table dat.group_rx_ndfrt_therapy as
+  create table dat.rx_ndfrt_tx_grp as
     select ppc.*, ppcc.concept_code as ndfrt_group_cd, ppcc.concept_name as ndfrt_group_desc, ppcc.concept_class_id as ndfrt_group_omop_class
     from (
     select pp.*, ppcr.relationship_id as ndfrt_class_omop_rlt, ppcr.concept_id_2 as ndfrt_group_omop_cd_id
@@ -128,12 +126,12 @@ proc sql;
     where (ppcc.concept_class_id = 'Pharma Preparation'
     or ppcc.concept_class_id = 'Chemical Structure')
 ;
-
 quit;
 
 
+*Rx Group Hierarchy for National Drug File - Reference Terminology Mechanisms of Action;
 proc sql;
-create table dat.group_rx_ndfrt_mechanism as
+create table dat.rx_ndfrt_mech_grp as
     select ppc.*, ppcc.concept_code as ndfrt_group_cd, ppcc.concept_name as ndfrt_group_desc, ppcc.concept_class_id as ndfrt_group_omop_class
     from (
     select pp.*, ppcr.relationship_id as ndfrt_class_omop_rlt, ppcr.concept_id_2 as ndfrt_group_omop_cd_id
@@ -179,8 +177,10 @@ create table dat.group_rx_ndfrt_mechanism as
 
 quit;
 
+
+*Rx NDFRT and RxNorm Crosswalk;
 proc sql;
-create table dat.xwalk_rx_ndfrt_rxnorm as
+create table dat.rx_ndfrt_rxnorm_xwalk as
   select cpr.*, cpt.concept_code as rxnorm_code, cpt.concept_name as rxnorm_desc, cpt.concept_class_id as rxnorm_omop_class
   from (
     select cp.concept_code as ndfrt_group_cd, cp.concept_name as ndfrt_group_desc, cp.concept_class_id as ndfrt_omop_class, cr.concept_id_1 as ndfrt_omop_code_id, cr.concept_id_2 as rxnorm_omop_code_id
