@@ -1,0 +1,8 @@
+{
+  "bundle": "t001_proc_sql_codebucket_union",
+  "source_file": "sas_etl/02-load-VDW-CB.sas",
+  "source_blob_sha": "4617595619b3c425438b5bd6cc0aa2a6d35aaed7",
+  "source_commit": "3298178caf251df287e4aa7b60d1e7cebb0d4c35",
+  "tier": "mock_data",
+  "notes": "PROC SQL builds the VDW Codebucket via monotonic() id + an 8-way UNION over vocab.concept rows filtered by vocabulary_id, plus the local VDW standard codes. External libnames dat./vocab. redirected to work and seeded with small inline samples (5 VDW + 10 OMOP concept rows); the union/print logic is upstream-verbatim. Produces 15 rows."
+}

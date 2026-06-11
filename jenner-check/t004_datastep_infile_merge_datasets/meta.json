@@ -1,0 +1,8 @@
+{
+  "bundle": "t004_datastep_infile_merge_datasets",
+  "source_file": "sas_etl/01-merge-omop-vocab.sas",
+  "source_blob_sha": "b5679e2b44872cbf3567b5f8e7f92ce71a3007cf",
+  "source_commit": "3298178caf251df287e4aa7b60d1e7cebb0d4c35",
+  "tier": "mock_data",
+  "notes": "The incremental OMOP loader for two of the nine tables (concept, vocabulary): the %sysfunc(exist(...)) first-run vs incremental branch and the PROC DATASETS delete-temps + change _in->final table swap, upstream-verbatim. The Athena CSV INFILE source is replaced by inline tab-delimited DATALINES with the same columns/informats (so the bundle is fully self-contained for the runner). vocab. redirected to work. Final concept=3 rows, vocabulary=2 rows."
+}

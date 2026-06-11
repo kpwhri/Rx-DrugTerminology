@@ -1,0 +1,13 @@
+{
+  "_captured_at": "2026-06-11T17:46:06Z",
+  "_captured_run_id": "r_019eb7ca5c347981a2b8bcce7d8085e9",
+  "status": "ok",
+  "exit_code": 0,
+  "log_contains": [
+    "NOTE: Renamed VOCABULARY_IN to VOCABULARY.",
+    "NOTE: Renamed CONCEPT_IN to CONCEPT.",
+    "NOTE: PROC PRINT completed: 3 observations printed, 6 variables"
+  ],
+  "log_does_not_contain": ["ERROR:", "[JENNER-ERROR"],
+  "diagnostics": {"parse_warnings": [], "runtime_warnings": []}
+}

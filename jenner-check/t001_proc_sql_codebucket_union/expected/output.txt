@@ -1,0 +1,19 @@
+                                                VDW Codebucket (sample)                                                 
+
+  Obs  CODE_ID         CODE         CODE_TYPE                                       CODE_DESC    CODE_SOURCE
+    1        1  71015523     NDC               Lipitor 10 MG Oral Tablet                       VDW_LOCAL
+    2        2  71015623     NDC               Lipitor 20 MG Oral Tablet                       VDW_LOCAL
+    3        3  378018201    NDC               Metformin 500 MG Oral Tablet                    VDW_LOCAL
+    4        4  N0000146232  NDFRT             HMG-CoA Reductase Inhibitors                    VDW_LOCAL
+    5        5  A10BA02      ATC               metformin                                       VDW_LOCAL
+    6        6  N0000146232  NDFRT             Hydroxymethylglutaryl-CoA Reductase Inhibitors  OMOP_PHARMACY
+    7        7  OMOP4821     RxNorm_Extension  atorvastatin / ezetimibe Oral Tablet            OMOP_PHARMACY
+    8        8  A10BA02      ATC               metformin                                       OMOP_PHARMACY
+    9        9  73178        SNOMED            Product containing atorvastatin                 OMOP_PHARMACY
+   10       10  12345        GCN_SEQNO         atorvastatin 10 MG                              OMOP_PHARMACY
+   11       11  71015523     NDC               atorvastatin calcium 10 MG tablet               OMOP_PHARMACY
+   12       12  378018201    NDC               metformin hydrochloride 500 MG tablet           OMOP_PHARMACY
+   13       13  617314       RxNorm            Atorvastatin 10 MG Oral Tablet                  OMOP_PHARMACY
+   14       14  617318       RxNorm            Atorvastatin 20 MG Oral Tablet                  OMOP_PHARMACY
+   15       15  861007       RxNorm            Metformin 500 MG Oral Tablet                    OMOP_PHARMACY
+
