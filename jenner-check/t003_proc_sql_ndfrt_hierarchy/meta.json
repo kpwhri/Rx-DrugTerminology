@@ -1,0 +1,8 @@
+{
+  "bundle": "t003_proc_sql_ndfrt_hierarchy",
+  "source_file": "sas_etl/03-load-RCM.sas",
+  "source_blob_sha": "1ace7e9d65947e13452f450bcbf8065b2215d161",
+  "source_commit": "3298178caf251df287e4aa7b60d1e7cebb0d4c35",
+  "tier": "mock_data",
+  "notes": "The NDFRT therapeutic-class hierarchy query (rx_ndfrt_tx_grp): five levels of self-joins over vocab.concept and vocab.concept_relationship walking Therapeutic Class -Subsumes-> category -Therap class of-> Pharmacologic Class -Subsumes/Has chem structure-> group. vocab. redirected to work and seeded with a minimal NDFRT chain so every join level resolves; the nested SQL is upstream-verbatim. Produces 2 group rows."
+}

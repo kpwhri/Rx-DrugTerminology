@@ -1,0 +1,71 @@
+Jenner 0.1.0 (Unlicensed - limited to 100 observations)
+Get a license at https://jenneranalytics.com/license
+
+NOTE: Option OBS changed to 100.
+NOTE: DATA concept_temp
+
+NOTE: Processing inline DATALINES (3 lines)
+
+NOTE: Read 3 rows from DATALINES.
+NOTE: Wrote concept_temp (3 rows, 6 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: DATA vocabulary_temp
+
+NOTE: Processing inline DATALINES (2 lines)
+
+NOTE: Read 2 rows from DATALINES.
+NOTE: Wrote vocabulary_temp (2 rows, 5 columns).
+NOTE: DATA elapsed:
+  wall  0.00 seconds
+  cpu   0.00 seconds
+NOTE: PROC SQL 
+
+NOTE: Table concept_in created.
+NOTE: PROC SQL statement used.
+NOTE: PROC SQL 
+
+NOTE: Table vocabulary_in created.
+NOTE: PROC SQL statement used.
+NOTE: PROC DATASETS library=WORK
+
+NOTE: 
+                       Directory
+
+       Libref             WORK
+       Engine             AVRO
+       Physical Name      /tmp/work/work/265b368c-891d-4381-a0c3-dbfa3ac9befa
+
+       #    Name                             Member Type
+       ----------------------------------------------------
+       1    CONCEPT_IN                       DATA
+       2    CONCEPT_TEMP                     DATA
+       3    VOCABULARY_IN                    DATA
+       4    VOCABULARY_TEMP                  DATA
+
+NOTE: Deleting VOCABULARY_TEMP (memtype=DATA).
+NOTE: Deleting CONCEPT_TEMP (memtype=DATA).
+NOTE: 2 dataset(s) deleted.
+NOTE: PROC DATASETS library=WORK
+
+NOTE: 
+                       Directory
+
+       Libref             WORK
+       Engine             AVRO
+       Physical Name      /tmp/work/work/265b368c-891d-4381-a0c3-dbfa3ac9befa
+
+       #    Name                             Member Type
+       ----------------------------------------------------
+       1    CONCEPT_IN                       DATA
+       2    VOCABULARY_IN                    DATA
+
+NOTE: Renamed VOCABULARY_IN to VOCABULARY.
+NOTE: Renamed CONCEPT_IN to CONCEPT.
+NOTE: PROC PRINT data=concept
+
+NOTE: PROC PRINT completed: 3 observations printed, 6 variables
+NOTE: PROC PRINT data=vocabulary
+
+NOTE: PROC PRINT completed: 2 observations printed, 5 variables

@@ -1,0 +1,13 @@
+                                             OMOP concept table after load                                              
+
+  Obs  CONCEPT_ID  CONCEPT_CODE                    CONCEPT_NAME  VOCABULARY_ID     CONCEPT_CLASS_ID  STANDARD_CONCEPT
+    1      617314  617314        Atorvastatin 10 MG Oral Tablet  RxNorm         Clinical Drug        S
+    2      861007  861007        Metformin 500 MG Oral Tablet    RxNorm         Clinical Drug        S
+    3       44819  NDFRT0001     HMG-CoA Reductase Inhibitors    NDFRT          Mechanism of Action  C
+
+                                            OMOP vocabulary table after load                                            
+
+  Obs  VOCABULARY_ID                             VOCABULARY_NAME                           VOCABULARY_REFERENCE  VOCABULARY_VERSION  VOCABULARY_CONCEPT_ID
+    1  RxNorm         RxNorm                                      https://www.nlm.nih.gov/research/umls/rxnorm/  RxNorm 20230904                  44819104
+    2  NDFRT          National Drug File - Reference Terminology  https://www.nlm.nih.gov/                       NDFRT 2018                       44819114
+

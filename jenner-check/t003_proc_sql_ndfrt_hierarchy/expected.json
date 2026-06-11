@@ -1,0 +1,12 @@
+{
+  "_captured_at": "2026-06-11T17:44:32Z",
+  "_captured_run_id": "r_019eb7c8f9eb7312b50a634e5f0535dc",
+  "status": "ok",
+  "exit_code": 0,
+  "log_contains": [
+    "NOTE: Table rx_ndfrt_tx_grp created.",
+    "NOTE: PROC PRINT completed: 2 observations printed, 19 variables"
+  ],
+  "log_does_not_contain": ["ERROR:", "[JENNER-ERROR"],
+  "diagnostics": {"parse_warnings": [], "runtime_warnings": []}
+}
